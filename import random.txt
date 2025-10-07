@@ -1,0 +1,33 @@
+import random
+
+# Predefined list of 5 words
+word_list = ["apple", "grape", "lemon", "peach", "mango"]
+secret_word = random.choice(word_list)
+
+# Game setup
+incorrect_guesses = 0
+max_incorrect = 6
+
+print("🎮 Welcome to Hangman! Guess the full word.")
+print(f"You have {max_incorrect} tries.\n")
+
+# Game loop
+while incorrect_guesses < max_incorrect:
+    guess = input("Enter your word guess: ").lower()
+
+    # Validate input
+    if not guess.isalpha():
+        print("❗ Please enter a valid word (letters only).")
+        continue
+
+    if guess == secret_word:
+        print("🎉 Correct! You guessed the word. You win!")
+        break
+    else:
+        incorrect_guesses += 1
+        tries_left = max_incorrect - incorrect_guesses
+        print(f"❌ Wrong guess. {tries_left} tries left.")
+
+# Out of tries
+if incorrect_guesses == max_incorrect:
+    print(f"\n💀 Game over! The correct word was: {secret_word}")
